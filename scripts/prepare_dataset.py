@@ -51,13 +51,13 @@ def worker(image_file_name, args) -> None:
             for pos_x in range(0, image_width - args.image_size + 1, args.step):
                 # Crop
                 index_list.append((pos_y,pos_x))
-                # crop_image = image[pos_y: pos_y + args.image_size, pos_x:pos_x + args.image_size, ...]
-                # crop_image = np.ascontiguousarray(crop_image)
+                crop_image = image[pos_y: pos_y + args.image_size, pos_x:pos_x + args.image_size, ...]
+                crop_image = np.ascontiguousarray(crop_image)
                 # Save image
-                # cv2.imwrite(f"{args.output_dir}/{image_file_name.split('.')[-2]}_{index:04d}.{image_file_name.split('.')[-1]}", crop_image)
+                cv2.imwrite(f"{args.output_dir}/{image_file_name.split('.')[-2]}_{index:04d}.{image_file_name.split('.')[-1]}", crop_image)
 
                 index += 1
-    print(len(index_list))
+    # print(len(index_list))
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Prepare database scripts.")
